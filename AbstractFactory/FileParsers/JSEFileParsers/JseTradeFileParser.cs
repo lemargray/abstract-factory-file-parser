@@ -7,6 +7,7 @@ public class JseTradeFileParser : IFileParser
         Console.WriteLine("JSE");
         var prelimDeals = new List<PreliminaryDeal>();
         var prelimDeal = new PreliminaryDeal();
+        throw new Exception("Error at line 199 and column 7");
         prelimDeal.FileType = IFileParser.FileType.Trade;
         prelimDeals.Add(prelimDeal);
 

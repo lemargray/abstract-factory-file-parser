@@ -1,14 +1,23 @@
 ﻿using AbstractFactory;
 
-var exchangeType = "jse";
+var exchangeType = "dma";
 var fileType = IFileParser.FileType.Trade;
+string fileT = "Trade";
+IFileParser.FileType type = fileT switch
+{
+    "Trade" => IFileParser.FileType.Trade,
+    "NonTrade" => IFileParser.FileType.NonTrade
+};
 var filePath = "trade.csv";
 
-// var exchange = FileParserFactoryProducer.NewFileParserFactory(exchangeType);
-// var parser = exchange?.NewFileParser(fileType);
-// var prelimDeals = parser?.Parse(filePath);
-
-var prelimDeals = FileParser.Parse(exchangeType, fileType, filePath);
-
+List<PreliminaryDeal>? prelimDeals = null;
+try
+{
+    prelimDeals = FileParser.Parse(exchangeType, fileType, filePath);
+}
+catch (Exception e)
+{
+    Console.WriteLine(e.Message); // display error to user
+}
 
 Console.WriteLine(prelimDeals?[0]);
